@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Watchlist-Stocks</title>
+   <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+   <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+   <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Watchlist</h2>
+  <table id="stocks">
+    <thead>
+      <tr>
+          <th>Symbol</th>
+          <th>Symbol Name</th>
+          <th>Last price</th>
+          <th>Change</th>
+          <th>% Change</th>
+          <th>Volume</th>
+          <th>Time</th>
+          <th></th>
+      </tr>
+    </thead>
+  </table>
+</div>
+
+</body>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      var stocksTable = $('#stocks').dataTable({
+        "bProcessing": true,
+        "sAjaxSource": "getStocks.php",
+        "aoColumns": [
+              { mData: 'symbol' } ,
+              { mData: 'name' },
+              { mData: 'last' },
+              { mData: 'change' },
+              { mData: 'pctchange' },
+              { mData: 'volume' },
+              { mData: 'tradetime' },
+              { "mDataProp": null,
+                        "sDefaultContent": '<a id="delete" name="delete" href="#"> <img src="images/delete.png" alt="delete" height="16" width="16"/></a>'
+             }
+            ]
+      });
+      
+      $(document).on("click","a[name='delete']", function (e) {
+          //Code to get the selected stock and delete
+      });
+  });
+</script>
+</html>
